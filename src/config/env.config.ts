@@ -298,12 +298,14 @@ export class ConfigService {
   }
 
   private loadEnv() {
-    this.env = this.envProcess();
-    this.env.PRODUCTION = process.env?.NODE_ENV === 'PROD';
-    if (process.env?.DOCKER_ENV === 'true') {
-      this.env.SERVER.TYPE = process.env.SERVER_TYPE as 'http' | 'http';
-      this.env.SERVER.PORT = Number.parseInt(process.env.SERVER_PORT) || 8080;
-    }
+  this.env = this.envProcess();
+  this.env.PRODUCTION = process.env?.NODE_ENV === 'PROD';
+
+  this.env.SERVER.TYPE = process.env.SERVER_TYPE as 'http' | 'http' || 'http';
+
+  // Aqui garantimos que a porta será lida corretamente, inclusive no Render
+  this.env.SERVER.PORT = Number(process.env.PORT) || Number(process.env.SERVER_PORT) || 3000;
+}
   }
 
   private envProcess(): Env {
