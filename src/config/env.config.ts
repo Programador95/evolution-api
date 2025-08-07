@@ -306,7 +306,6 @@ export class ConfigService {
   // Aqui garantimos que a porta será lida corretamente, inclusive no Render
   this.env.SERVER.PORT = Number(process.env.PORT) || Number(process.env.SERVER_PORT) || 3000;
 }
-  }
 
   private envProcess(): Env {
     return {
