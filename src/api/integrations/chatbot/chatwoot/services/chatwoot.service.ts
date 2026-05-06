@@ -1076,7 +1076,7 @@ export class ChatwootService {
         const response = await axios.get(media, {
           responseType: 'arraybuffer',
         });
-        mimeType = response.headers['content-type'];
+        mimeType = response.headers['content-type'] as string;
       }
 
       let type = 'document';
